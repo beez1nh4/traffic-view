@@ -1,10 +1,34 @@
 import styled from "styled-components"
-import { basicBlue, basicDarkGray, basicDarkGreen, basicGreen } from "../constants/colors"
+import { basicBlue, basicDarkGray, basicGreen } from "../constants/colors"
+import { useAuth } from "../providers/auth"
+import defineCapacity from "../functions/defineCapacity"
+import reverseVector from "../functions/reverseVector"
 
 export default function Spot({spotNumber}) {
+    const {auxVector, setAuxVector, matrix, setMatrix} = useAuth()
+
+    function fillAux(){
+        console.log(spotNumber)
+        const newAuxVector = [...auxVector, spotNumber]
+        setAuxVector(newAuxVector)
+        let capacity = 0
+        if (newAuxVector.length === 2){
+            capacity = defineCapacity(newAuxVector[0], newAuxVector[1])
+            let newMatrix = matrix
+            reverseVector(newAuxVector)
+            newMatrix[newAuxVector[0]-1][newAuxVector[1]-1] = capacity
+            console.log(newMatrix)
+            setMatrix(newMatrix)
+            setAuxVector([])
+        }
+
+    }
+    
+
+
     return(
         <>
-            <ButtonSpot>{spotNumber}</ButtonSpot>
+            <ButtonSpot onClick={fillAux} spotNumber={spotNumber}>{spotNumber}</ButtonSpot>
         </>
     )
 }

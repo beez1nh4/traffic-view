@@ -1,11 +1,16 @@
 import NavBar from "../../components/NavBar";
 import styled from "styled-components";
-import { basicBlue, basicDarkGray, basicWhite, basicYellow } from "../../constants/colors";
-import printNumbers from "../../components/PrintNumbers";
+import { basicBlue, basicWhite, basicYellow } from "../../constants/colors";
+import printNumbers from "../../functions/printNumbers";
 import Spot from "../../components/Spot";
+import { useAuth } from "../../providers/auth";
+import formatMatrix from "../../functions/formatMatrix";
+import { useEffect } from "react";
 
 export default function SimulatorPage() {
-    let grid = printNumbers(3)
+    const n = 3
+    let grid = printNumbers(n)
+    const {setMatrix} = useAuth()
     
     return (
         <>
