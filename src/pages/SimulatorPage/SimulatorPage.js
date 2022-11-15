@@ -4,8 +4,7 @@ import { basicBlue, basicWhite, basicYellow } from "../../constants/colors";
 import printNumbers from "../../functions/printNumbers";
 import Spot from "../../components/Spot";
 import { useAuth } from "../../providers/auth";
-import formatMatrix from "../../functions/formatMatrix";
-import { useEffect } from "react";
+
 
 export default function SimulatorPage() {
     const n = 3
@@ -55,11 +54,15 @@ const Spots = styled.div`
     border: 8px solid ${basicBlue};
 `
 const Grid = styled.div`
-    /* padding-top: 120px;
+   /*  padding-top: 120px;
     padding-bottom: 150px;
     padding-right: 140px;
-    padding-left: 220px; */
+    padding-left: 220px; */ 
     width: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 `
 const Arrow = styled.div`
     box-sizing: border-box;
@@ -68,5 +71,5 @@ const Arrow = styled.div`
     font-size: 40px;
     width: 60px;
     display: flex;
-    padding-bottom: 120px;
+    padding-bottom: 90px;
 `
