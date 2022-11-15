@@ -4,7 +4,7 @@ import formatMatrix from "../functions/formatMatrix";
 export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
-const [matrix, setMatrix] = useState(formatMatrix(3))
+const [matrix, setMatrix] = useState(formatMatrix(9))
 const [auxVector, setAuxVector] = useState([])
   return (
     <AuthContext.Provider value={
