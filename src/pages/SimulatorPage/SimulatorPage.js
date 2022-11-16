@@ -1,15 +1,14 @@
 import NavBar from "../../components/NavBar";
 import styled from "styled-components";
-import { basicBlue, basicWhite, basicYellow } from "../../constants/colors";
+import { basicBlue, basicDarkGreen, basicGreen, basicWhite, basicYellow } from "../../constants/colors";
 import printNumbers from "../../functions/printNumbers";
 import Spot from "../../components/Spot";
-import { useAuth } from "../../providers/auth";
+import PathScreen from "../../components/PathScreen";
 
 
 export default function SimulatorPage() {
     const n = 3
     let grid = printNumbers(n)
-    const {setMatrix} = useAuth()
     
     return (
         <>
@@ -24,7 +23,12 @@ export default function SimulatorPage() {
             <Arrow>→</Arrow>
             <Spot spotNumber={"F"}></Spot>
             </Spots>
+            <Align>
+            <PathScreen></PathScreen>
+            <ButtonSend>View Results</ButtonSend>
+            </Align>
         </SimulatorPageContainer>
+        
         </>
     )
 }
@@ -34,12 +38,12 @@ const SimulatorPageContainer = styled.div`
     margin-top: 80px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
 `
 const Spots = styled.div`
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 300px;
     box-sizing: border-box;
     display: flex;
     width: 880px;
@@ -72,4 +76,22 @@ const Arrow = styled.div`
     width: 60px;
     display: flex;
     padding-bottom: 90px;
+`
+const ButtonSend = styled.button`
+    width: 400px;
+    height: 40px;
+    margin-top: 50px;
+    font-weight: bold;
+    font-family: 'Exo 2', sans-serif;
+    margin: 4px solid ${basicDarkGreen};
+    background-color: ${basicGreen};
+    font-size: 20px;
+`
+const Align = styled.div`
+    margin-top: 50px;
+    margin-bottom: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 `

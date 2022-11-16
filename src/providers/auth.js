@@ -6,12 +6,15 @@ export const AuthContext = createContext({});
 export const AuthProvider = (props) => {
 const [matrix, setMatrix] = useState(formatMatrix(9))
 const [auxVector, setAuxVector] = useState([])
+const [paths, setPaths] = useState([])
   return (
     <AuthContext.Provider value={
       {matrix, 
       setMatrix,
       auxVector,
-      setAuxVector
+      setAuxVector,
+      paths,
+      setPaths
       }}>
       {props.children}
     </AuthContext.Provider>
