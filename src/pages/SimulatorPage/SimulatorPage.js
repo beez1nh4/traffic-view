@@ -4,12 +4,37 @@ import { basicBlue, basicDarkGreen, basicGreen, basicWhite, basicYellow } from "
 import printNumbers from "../../functions/printNumbers";
 import Spot from "../../components/Spot";
 import PathScreen from "../../components/PathScreen";
-
+import axios from "axios";
+import { useAuth } from "../../providers/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function SimulatorPage() {
+    const navigate = useNavigate()
+    const {matrix} = useAuth()
     const n = 3
     let grid = printNumbers(n)
     
+
+    function sendInfo(){
+        const initialCapacity = Number(prompt('What is the initial capacity?'))
+        const URL = "http://localhost:5000/paths"
+        const body = {
+            initialCapacity,
+            matrix
+        }
+        console.log(body)
+        const promise = axios.post(URL, body)
+        
+        promise.then((res) => {
+            navigate("/result")
+        })
+    
+        promise.catch((err) => {
+          alert(err.response.data.message)
+          
+        }) 
+    }
+
     return (
         <>
         <NavBar/>
@@ -25,7 +50,7 @@ export default function SimulatorPage() {
             </Spots>
             <Align>
             <PathScreen></PathScreen>
-            <ButtonSend>View Results</ButtonSend>
+            <ButtonSend onClick={sendInfo}>View Results</ButtonSend>
             </Align>
         </SimulatorPageContainer>
         
